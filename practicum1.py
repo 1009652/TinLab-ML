@@ -73,16 +73,25 @@ class Network:
         itterations = 0
         startTime = time.time()
         while(average > data.maxCost):
+            bestDifference = 0
             itterations += 1
             for i in range(len(self.links)):
                 self.links[i].setWeight(self.links[i].weight + learningRate)
                 currentAverageCost = self.computeAveragecost()
-                if(currentAverageCost < average):
+                difference = average - currentAverageCost
+
+                if(abs(difference) > abs(bestDifference)):
+                    bestDifference = difference
                     average = currentAverageCost
                     bestLink = i
 
                 self.links[i].setWeight(self.links[i].weight - learningRate)
-            self.links[bestLink].setWeight(self.links[bestLink].weight + learningRate)
+
+            if(bestDifference > 0):
+                self.links[bestLink].setWeight(self.links[bestLink].weight + learningRate)
+            else:
+                self.links[bestLink].setWeight(self.links[bestLink].weight - learningRate)
+                
         print("After", itterations, "itterations, average cost =", self.computeAveragecost(), "(", time.time()-startTime, "s)")
     
     def testNetwork(self):
