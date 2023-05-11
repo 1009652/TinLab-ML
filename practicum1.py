@@ -106,7 +106,11 @@ class Network:
             print("Guess is:", guess, "with a certainty of", 100 - (cost * 200))
             print()
 
+    def printWeight(self):
+        for link in self.links:
+            print(link.weight)
+
 network = Network()
 network.trainNetwork(0.001)
 network.testNetwork()
-
+network.printWeight()
