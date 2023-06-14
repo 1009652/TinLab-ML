@@ -17,7 +17,6 @@ class Node:
         value = self.value
         for link in self.links:
             value += link.getValue()
-        
         return value
 
     def sigmoid(self, x):

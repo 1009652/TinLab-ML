@@ -6,7 +6,7 @@ outputDim = 2
 nrOfColumns = 3
 nrOfRows = 3
 
-maxCost = 0.01
+maxCost = 0.1
 
 trainingSet = (
     ((
